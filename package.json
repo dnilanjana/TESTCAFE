@@ -1,0 +1,51 @@
+{
+  "name": "ui-automation",
+  "version": "1.0.0",
+  "description": "Automated UI Smoke test of DRA",
+  "main": "index.js",
+  "scripts": {
+    "test:chrome": "ENVIRONMENT=qa testcafe chrome '-skip-js-errors' ./src/tests --fixture-meta fixtureType=smoke",
+    "test:chrome:api": "ENVIRONMENT=qa testcafe chrome:headless '-skip-js-errors' ./src/tests/elasticSearchAPIwithUI.test.ts",
+    "test:e2e": "ENVIRONMENT=qa node runTests.ts",
+    "test:omAPI": "ENVIRONMENT=qa testcafe chrome '-skip-js-errors' ./src/tests/omAPI.test.ts ",
+    "test:chrome:headless": "ENVIRONMENT=qa testcafe chrome:headless '-skip-js-errors' ./src/tests -r xunit:testOutput/test-xunit.xml,spec",
+    "test:chrome:headless:video": "ENVIRONMENT=qa testcafe chrome:headless --video ./videos '-skip-js-errors' --skip-uncaught-errors ./src/tests -q attemptLimit=5,successThreshold=1 -r xunit:testOutput/test-xunit.xml,jenkins:testOutput/test-xunit2.xml,cucumber-json",
+    "test:chrome:quick:headless:video": "ENVIRONMENT=qa testcafe chrome:headless --video ./videos '-skip-js-errors' ./src/tests/smokeSuite.test.ts -q attemptLimit=5,successThreshold=1 -r xunit:testOutput/test-xunit.xml,jenkins:testOutput/test-xunit2.xml,spec",
+    "test:chrome:regression:headless:video": "ENVIRONMENT=qa node runTests.ts -r xunit:testOutput/test-xunit.xml,jenkins:testOutput/test-xunit2.xml,spec",
+    "test:chrome:browserstack": "ENVIRONMENT=qa testcafe 'browserstack:chrome@101.0:Windows 11' '-skip-js-errors' ./src/tests --fixture-meta fixtureType=smoke",
+    "report": "node report-generator.ts",
+    "lint": "eslint ./src/**",
+    "fix": "eslint --fix ./src/**"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nike/shared-aws": "1.1.32",
+    "@typescript-eslint/eslint-plugin": "^5.35.1",
+    "axios": "^0.27.2",
+    "browserstack": "^1.6.1",
+    "cucumber-html-reporter": "^5.5.0",
+    "dotenv": "16.0.0",
+    "fs": "^0.0.1-security",
+    "jwt-decode": "^3.1.2",
+    "log4js": "^6.6.1",
+    "minimist": "^1.2.6",
+    "multiple-cucumber-html-reporter": "^1.18.0",
+    "ssl-root-cas": "^1.3.1",
+    "testcafe": "^1.18.6",
+    "testcafe-browser-provider-browserstack": "^1.14.0",
+    "testcafe-reporter-cucumber-json": "^6.3.0",
+    "testcafe-reporter-jenkins": "^1.0.1",
+    "testcafe-reporter-slack-custom": "^1.3.0",
+    "testcafe-reporter-xunit": "^2.2.1",
+    "typescript": "3.9.10",
+    "typescript-eslint": "^0.0.1-alpha.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^5.33.1",
+    "eslint": "^8.22.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-testcafe": "^0.2.1"
+  }
+}

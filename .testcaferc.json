@@ -1,0 +1,30 @@
+{
+  "screenshots": {
+    "path": "./src/screenshots",
+    "takeOnFails": true,
+    "pathPattern": "${DATE}_${TIME}/test-${TEST_INDEX}/${USERAGENT}/${FILE_INDEX}.png",
+    "fullPage": true
+  },
+  "skipJsErrors": true,
+  "skipUncaughtErrors": true,
+  "disablePageCaching": true,
+  "debugMode": false,
+  "debugOnFail": false,
+  "selectorTimeout": 40000,
+  "assertionTimeout": 40000,
+  "pageLoadTimeout": 40000,
+  "pageRequestTimeout": 60000,
+  "ajaxRequestTimeout": 60000,
+  "speed": 1,
+  "reporter": [
+    {
+      "name": "cucumber-json"
+    },
+    {
+      "name": "slack-custom",
+      "options": {
+        "channel": "#automation-reports"
+      }
+    }
+  ]
+}
